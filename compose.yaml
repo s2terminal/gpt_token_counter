@@ -1,9 +1,20 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      target: builder
     volumes:
       - .:/app
     ports:
       - 8080:8080
     command: poetry run python gpt_token_counter/main.py
-
+  prod:
+    build:
+      context: .
+      platforms:
+        - "linux/amd64"
+      target: prod
+    ports:
+      - 8001:8080
+    profiles:
+      - prod
