@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8080:8080
+    command: poetry run python gpt_token_counter/main.py
+
